@@ -1,0 +1,117 @@
+# Php code for imageLoaded && get variable from post and form-data
+header('Content-Type: application/json; charset=utf-8');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: PUT, GET, POST");
+include 'dbconfig.php';
+ 
+// Create connection
+$conn = new mysqli($HostName, $HostUser, $HostPass, $DatabaseName);
+if ($conn->connect_error) {
+ 
+ die("Connection failed to the DataBase: " . $conn->connect_error);
+} 
+ // Getting the received JSON into $json variable.
+ $json = file_get_contents('php://input');
+ 
+ // decoding the received JSON and store into $obj variable.
+$obj = json_decode($json,true);
+ 
+// Populate variables
+$U_ID = $_POST['idUsuario'];
+
+
+//move_uploaded_file($_FILES['photo']['tmp_name'], 'imagenesProyecto/imagenesProyecto/imagenUsuario/' . $_FILES['photo']['name']);
+********************************************************************************
+
+
+$response = array();
+$target_dir = 'imagenesProyecto/imagenesProyecto/imagenUsuario/';
+if($_FILES['photo'])
+{
+    $avatar_name = $_FILES["photo"]["name"];
+    $avatar_tmp_name = $_FILES["photo"]["tmp_name"];
+    $error = $_FILES["photo"]["error"];
+    if($error > 0){
+        $response = array(
+            "status" => "error",
+            "error" => true,
+            "message" => "Error uploading the file!"
+        );
+    }else 
+    {
+       // $random_name = rand(1000,1000000)."-".$avatar_name;
+        $random_name = $avatar_name;
+        $upload_name = $target_dir.strtolower($random_name);
+   
+    
+        if(move_uploaded_file($avatar_tmp_name , $upload_name)) {
+            $response = array(
+                "status" => "success",
+                "error" => false,
+                "message" => "File uploaded successfully",
+                
+              );
+              
+         
+    $a = 'http://andresteccorp.club/TesisAndres/imagenesProyecto/imagenesProyecto/imagenUsuario/';
+    $b = $a.strtolower($avatar_name);
+    $sql = " Update usuario set imagenUsuario = '$b' where idUsuario = '$U_ID' ";          
+    if(mysqli_query($conn,$sql))          
+      {
+          echo'Insert into Db sucessfully';
+      }        
+              
+              echo'Insert into Db NO sucessfully';
+              
+              
+        }else
+        {
+            $response = array(
+                "status" => "error",
+                "error" => true,
+                "message" => "Error uploading the file!"
+            );
+        }
+    }
+    
+}else{
+    $response = array(
+        "status" => "error",
+        "error" => true,
+        "message" => "No file was sent to folder!"
+    );
+}
+
+
+
+**************************************************************
+$avatar_name = $_FILES["fileImageComercio"]["name"];    
+    $a = 'http://andresteccorp.club/TesisAndres/imagenesProyecto/imagenesProyecto/imagenUsuario/';
+    $b = $a.strtolower($avatar_name);
+    
+   // echo json_encode($b);
+
+    $sql = " Update usuario set imagenUsuario = '$b' where idUsuario = '$idUsuario' ";          
+    if(mysqli_query($conn,$sql))          
+      {
+          echo'Insert into Db sucessfully';
+      }        
+              
+          echo'Insert into Db NO sucessfully';
+
+
+********************************************************
+
+
+move_uploaded_file($_FILES['photo']['tmp_name'], 'imagenesProyecto/imagenesProyecto/imagenUsuario/' . $_FILES['photo']['name']);
+
+
+
+//$avatar_name = " 180b0a93-da52-4b8c-b988-cfde0e417cbc.jpg"; 
+$avatar_name = $_FILES['photo']['name'];  
+    $a = 'http://andresteccorp.club/TesisAndres/imagenesProyecto/imagenesProyecto/imagenUsuario/';
+    $b = $a.strtolower($avatar_name);
+    
+ 
+    $sql = " Update usuario set imagenUsuario = '$b' where idUsuario = '$idUsuario'";          
+    $result = $conn->query($sql);

@@ -1,0 +1,7 @@
+{
+    "editor.fontSize": 18,
+    "editor.autoIndent": "none",
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "editor.renderWhitespace": "none"
+}
