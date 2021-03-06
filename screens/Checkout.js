@@ -56,8 +56,6 @@ class Checkout extends Component {
     };
   }
 
- 
-
   //  this.props.navigation.navigate("Profile");
   componentWillMount() {
     const { postId, otherParam } = this.props.route.params;
@@ -92,10 +90,10 @@ class Checkout extends Component {
     // this.setState({ descuento: descuento });
   }
 
-   componentDidMount() {
-     this.setTimeOrder();
-     this._retrieveDataAsynStor();
-   }
+  componentDidMount() {
+    this.setTimeOrder();
+    this._retrieveDataAsynStor();
+  }
 
   /**--------------------------------IniciolMetodosRender-------------------------------------- */
 
@@ -286,7 +284,7 @@ helpers.removeAll(this);
 
     // const idCom = stateCartItems.map((id) => id.idComercio);
 
-    const url = `http://andresteccorp.club/TesisAndres/sessionUserCheckout.php`;
+    const url = `http://andresteccorp.club/ecom_val/sessionUserCheckout.php`;
 
     console.log(
       "Desde el metodo  checkoutInfo El idUsuario----" +
@@ -316,46 +314,46 @@ helpers.removeAll(this);
     // ];
 
     if (logueoToken === true) {
-    fetch(url, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+      fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
 
-      // Convert your array as JSON Array
-      body: JSON.stringify({
-        userId: idUsuario,
-        granTotal: b,
-        date1: date1,
-        date2: date2,
-        carrito: stateCartItems,
-        idComercio: idComercio,
-        radioButtonChoose: this.state.radioButtonChoose,
-        domicilio: this.state.text,
-      }),
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log("RespuestaServerCloud **----------**", responseJson);
-        if (responseJson) {
-          alert("Pedido En Proceso \n" + "Espera Notificación de Compra");
-
-          this.props.navigation.navigate("Home");
-          this.clearCheckOut();
-        } else {
-          alert(
-            "Problemas en el proceso del pedido \n" + "Pedido no desarrollado"
-          );
-        }
+        // Convert your array as JSON Array
+        body: JSON.stringify({
+          userId: idUsuario,
+          granTotal: b,
+          date1: date1,
+          date2: date2,
+          carrito: stateCartItems,
+          idComercio: idComercio,
+          radioButtonChoose: this.state.radioButtonChoose,
+          domicilio: this.state.text,
+        }),
       })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log("RespuestaServerCloud **----------**", responseJson);
+          if (responseJson) {
+            alert("Pedido En Proceso \n" + "Espera Notificación de Compra");
 
-      .catch((error) => {
-        console.log(error);
-      });
-       } else {
-       alert("Porfavor loguearse \n" + "para continuar con el pedido");
-     }
+            this.props.navigation.navigate("Home");
+            this.clearCheckOut();
+          } else {
+            alert(
+              "Problemas en el proceso del pedido \n" + "Pedido no desarrollado"
+            );
+          }
+        })
+
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      alert("Porfavor loguearse \n" + "para continuar con el pedido");
+    }
   };
 
   /**--------------------------------FinalMetodos-------------------------------------- */
@@ -363,7 +361,7 @@ helpers.removeAll(this);
   render() {
     const { navigate } = this.props.navigation;
 
-  //  console.log("DomicilioText --- " + this.state.text);
+    //  console.log("DomicilioText --- " + this.state.text);
 
     // Get that Item from an Json Object
     // let result = this.state.cartItems.map((a) => a.item.idComercio);
@@ -706,8 +704,8 @@ helpers.removeAll(this);
               numberOfLines={10}
               multiline={true}
               // onChangeText={(text) => this.setState({ domicilo: text })}
-             onChangeText={(text) => this.setState({text})}
-             value={this.state.text}
+              onChangeText={(text) => this.setState({ text })}
+              value={this.state.text}
             />
           </View>
           <View style={{ marginTop: 10, marginBottom: 10, paddingBottom: 7 }}>

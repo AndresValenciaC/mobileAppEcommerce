@@ -42,7 +42,7 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    const url = "http://andresteccorp.club/TesisAndres/ofertas.php";
+    const url = "http://andresteccorp.club/ecom_val/ofertas.php";
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {

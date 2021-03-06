@@ -7,7 +7,7 @@ import {
   View,
   Dimensions,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 //import { negocio } from '../Api_homeData/Api_homeData';
 
@@ -17,7 +17,7 @@ const BannerHeight = 250;
 export default class CarouselC extends Component {
   static navigationOptions = {
     header: null,
-    title: "CarouselC"
+    title: "CarouselC",
   };
 
   constructor(props) {
@@ -26,17 +26,17 @@ export default class CarouselC extends Component {
   }
 
   componentDidMount() {
-    const url = "http://andresteccorp.club/TesisAndres/comercios.php";
+    const url = "http://andresteccorp.club/ecom_val/comercios.php";
     fetch(url)
-      .then(response => response.json())
-      .then(responseJson => {
+      .then((response) => response.json())
+      .then((responseJson) => {
         this.setState({
           //dataSource: responseJson.book_array
           // dataSource: dataN
-          dataSource: responseJson
+          dataSource: responseJson,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -69,7 +69,7 @@ export default class CarouselC extends Component {
           index={0}
           pageSize={BannerWidth}
         >
-          {data.map(image => this._renderPage(image))}
+          {data.map((image) => this._renderPage(image))}
         </Carousel>
       </View>
     );
@@ -80,6 +80,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 });

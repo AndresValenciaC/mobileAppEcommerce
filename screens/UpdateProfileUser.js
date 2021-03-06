@@ -41,7 +41,7 @@ export default class UpdateProfileUser extends Component {
 
   UpdateUserRecord = () => {
     const { navigate } = this.props.navigation;
-    fetch("http://andresteccorp.club/TesisAndres/userUpdateData_Mobile.php", {
+    fetch("http://andresteccorp.club/ecom_val/userUpdateData_Mobile.php", {
       method: "POST",
       headers: {
         Accept: "application/json",

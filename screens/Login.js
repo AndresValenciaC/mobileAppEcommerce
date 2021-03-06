@@ -91,7 +91,7 @@ export default class Login extends Component {
       Alert.alert("Porfavor No Dejar Vacios \n" + "Los Campos Del Formato");
     } else {
       let response = fetch(
-        "http://andresteccorp.club/TesisAndres/User_Login.php",
+        "http://andresteccorp.club/ecom_val/User_Login.php",
         {
           method: "POST",
           headers: {

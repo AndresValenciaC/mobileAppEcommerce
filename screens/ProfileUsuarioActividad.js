@@ -117,7 +117,7 @@ class ProfileUsuarioActividad extends Component {
         filename
     );
     return await fetch(
-      "http://andresteccorp.club/TesisAndres/imagenUploadsUsuario_Mobile.php",
+      "http://andresteccorp.club/ecom_val/imagenUploadsUsuario_Mobile.php",
       {
         method: "POST",
         headers: {
@@ -136,7 +136,7 @@ class ProfileUsuarioActividad extends Component {
         console.log("res ---- " + res);
         if (res == idUsuario) {
           fetch(
-            "http://andresteccorp.club/TesisAndres/imagenUploadsUsuario_Mobile.php",
+            "http://andresteccorp.club/ecom_val/imagenUploadsUsuario_Mobile.php",
             {
               method: "POST",
               body: formData,

@@ -46,7 +46,7 @@ export default class FacturaUser extends Component {
   datosFactura() {
     var idUser = this.state.dataFactura.id;
 
-    fetch("http://andresteccorp.club/TesisAndres/pedidosUsuarioFactura.php", {
+    fetch("http://andresteccorp.club/ecom_val/pedidosUsuarioFactura.php", {
       method: "POST",
       headers: {
         Accept: "application/json",

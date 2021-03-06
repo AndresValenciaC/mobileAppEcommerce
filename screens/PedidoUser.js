@@ -32,7 +32,7 @@ export default class PedidoUser extends Component {
     var idUser = this.state.dataProfile.id;
     console.log("Pedido UserId" + idUser);
 
-    fetch("http://andresteccorp.club/TesisAndres/pedidosUsuario.php", {
+    fetch("http://andresteccorp.club/ecom_val/pedidosUsuario.php", {
       method: "POST",
       headers: {
         Accept: "application/json",

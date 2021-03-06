@@ -61,7 +61,7 @@ class Comercios extends Component {
   // Metodos 2 render Data from api
   // For local Host -- const url = `http://192.168.0.19/TesisWeb/comercios.php`
   componentDidMount() {
-    const url = "http://andresteccorp.club/TesisAndres/comercios.php";
+    const url = "http://andresteccorp.club/ecom_val/comercios.php";
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {

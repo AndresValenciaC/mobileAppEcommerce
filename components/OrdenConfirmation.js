@@ -7,7 +7,7 @@ import Navbar from "./NavbarHeader";
 export default class OrdenConfirmation extends Component {
   static navigationOptions = {
     header: null,
-    title: "OrdenConfirmation"
+    title: "OrdenConfirmation",
   };
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ export default class OrdenConfirmation extends Component {
       carritoPedido: [],
       total: "",
       passW: " ",
-      email: " "
+      email: " ",
     };
   }
   componentWillMount() {
@@ -37,7 +37,7 @@ export default class OrdenConfirmation extends Component {
   // Send all the data to Server so Admin Web User will recive the information
 
   sendInfo = () => {
-    const url = `http://andresteccorp.club/TesisAndres/infoPedidoProceso.php`;
+    const url = `http://andresteccorp.club/ecom_val/infoPedidoProceso.php`;
 
     const { carritoPedido } = this.state;
 
@@ -45,21 +45,21 @@ export default class OrdenConfirmation extends Component {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       // Convert your array as JSON Array
       body: JSON.stringify({
-        carrito: carritoPedido
-      })
+        carrito: carritoPedido,
+      }),
     })
-      .then(res => res.json())
+      .then((res) => res.json())
 
       .then(
-        data => console.log("--- Adentro del Post OrdenCon --", data),
+        (data) => console.log("--- Adentro del Post OrdenCon --", data),
         this.Navigate()
       )
 
-      .catch(function(error) {
+      .catch(function (error) {
         console.log("-------- error ------- " + error);
         alert("result:" + error);
       });
@@ -78,7 +78,7 @@ export default class OrdenConfirmation extends Component {
             justifyContent: "center",
             alignItems: "center",
             marginBottom: 25,
-            marginTop: 25
+            marginTop: 25,
           }}
         >
           <Avatar
@@ -91,7 +91,7 @@ export default class OrdenConfirmation extends Component {
             activeOpacity={0.7}
             source={{
               uri:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Symbol_kept_vote.svg/996px-Symbol_kept_vote.svg.png"
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Symbol_kept_vote.svg/996px-Symbol_kept_vote.svg.png",
             }}
           />
         </View>
@@ -101,7 +101,7 @@ export default class OrdenConfirmation extends Component {
             style={{
               fontSize: 20,
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             Muchisimas Gracias : {correo}
@@ -111,7 +111,7 @@ export default class OrdenConfirmation extends Component {
             style={{
               fontSize: 20,
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             Tu Orden Se Encuentra en Proceso
@@ -120,7 +120,7 @@ export default class OrdenConfirmation extends Component {
             style={{
               fontSize: 20,
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             Dar click en icono para continuar
@@ -130,7 +130,7 @@ export default class OrdenConfirmation extends Component {
               fontSize: 15,
               justifyContent: "center",
               alignItems: "center",
-              marginTop: 15
+              marginTop: 15,
             }}
           >
             Tu Orden Numero es #
@@ -141,7 +141,7 @@ export default class OrdenConfirmation extends Component {
               fontSize: 15,
               justifyContent: "center",
               alignItems: "center",
-              marginBottom: 15
+              marginBottom: 15,
             }}
           >
             Tu Orden Total es $ {total}

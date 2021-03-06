@@ -37,7 +37,7 @@ class SearchEcommerce extends Component {
   //Data from Php file comercios.php
   // for Local Host const url = `http://192.168.0.19/TesisWeb/comercios.php`
   componentDidMount() {
-    const url = "http://andresteccorp.club/TesisAndres/ofertas.php";
+    const url = "http://andresteccorp.club/ecom_val/ofertas.php";
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {

@@ -36,7 +36,7 @@ class DetallesNegocio extends Component {
     this.setState({ dataParam: otherParam });
     const nombreComercio = this.state.nombreComercio;
 
-    fetch("http://andresteccorp.club/TesisAndres/infoComerciosProducto.php", {
+    fetch("http://andresteccorp.club/ecom_val/infoComerciosProducto.php", {
       method: "POST",
       headers: {
         Accept: "application/json",

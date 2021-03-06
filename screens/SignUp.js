@@ -55,7 +55,7 @@ export default class SingUp extends Component {
         "Porfavor llenar Correctamente \n" + "Cada Uno de los Campos"
       );
     } else {
-      fetch(`http://andresteccorp.club/TesisAndres/userRegister.php`, {
+      fetch(`http://andresteccorp.club/ecom_val/userRegister.php`, {
         method: "POST",
         headers: {
           Accept: "application/json",

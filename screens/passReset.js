@@ -74,7 +74,7 @@ export default class passReset extends Component {
       Alert.alert("Passwords \n" + "No Coinciden");
     } else {
       let response = fetch(
-        "http://andresteccorp.club/TesisAndres/resetPassUserMobile.php",
+        "http://andresteccorp.club/ecom_val/resetPassUserMobile.php",
         {
           method: "POST",
           headers: {

@@ -19,7 +19,7 @@ import {
   ListItem,
   Body,
   Radio,
-  Text
+  Text,
 } from "native-base";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 import Navbar from "./NavbarHeader";
@@ -29,7 +29,7 @@ import helpers from "../helpers/helpers";
 class Checkout extends Component {
   static navigationOptions = {
     header: null,
-    title: "Checkout"
+    title: "Checkout",
   };
 
   constructor(props) {
@@ -56,7 +56,7 @@ class Checkout extends Component {
       email: " ",
       radioButton: "TarjetaCredito",
       domicilo: "",
-      radioButtonChoose: ""
+      radioButtonChoose: "",
     };
   }
 
@@ -65,7 +65,7 @@ class Checkout extends Component {
     this.setState({
       idUsuario: null,
       tokenSession_idUser: false,
-      cartItems: []
+      cartItems: [],
     });
     alert("Saliste del Sistema");
     this.props.navigation.navigate("Home");
@@ -86,7 +86,7 @@ class Checkout extends Component {
     const cartItems = this.props.navigation.getParam("cartItems");
     this.setState({ cartItems: cartItems });
 
-    var SubTotal = cartItems.reduce(function(accumulator, cartItems) {
+    var SubTotal = cartItems.reduce(function (accumulator, cartItems) {
       return (
         accumulator +
         parseFloat(cartItems.item.precioUnidadProducto) *
@@ -109,11 +109,11 @@ class Checkout extends Component {
     var sec = new Date().getSeconds(); //Current Seconds
     this.setState({
       //Setting the value of the date time
-      date1: date + "/" + month + "/" + year + " "
+      date1: date + "/" + month + "/" + year + " ",
     });
     this.setState({
       //Setting the value of the date time
-      date2: hours + ":" + min + ":" + sec
+      date2: hours + ":" + min + ":" + sec,
     });
 
     this.setState({ totalParcial: SubTotal });
@@ -129,7 +129,7 @@ class Checkout extends Component {
     var descuen = 0;
     var descuentoTotal = 0;
 
-    this.state.cartItems.map(item => {
+    this.state.cartItems.map((item) => {
       if (item.item.codigoOferta == 1) {
         // console.log(
         //   item.item.codigoOferta,
@@ -178,9 +178,13 @@ class Checkout extends Component {
       //  console.log("resultado del metodo " + accumulatorOferta);
     });
 
-    var descuentoTotal = accumulatorOferta.reduce(function(accumulator, Items) {
+    var descuentoTotal = accumulatorOferta.reduce(function (
+      accumulator,
+      Items
+    ) {
       return accumulator + parseInt(Items);
-    }, 0);
+    },
+    0);
 
     return descuentoTotal;
     // console.log("resultado del metodoAcumulado " + descuentoTotal);
@@ -203,7 +207,7 @@ class Checkout extends Component {
               style={{
                 fontSize: 16,
                 fontWeight: "bold",
-                marginBottom: 10
+                marginBottom: 10,
               }}
             >
               $ {item.item.precioUnidadProducto * item.Cantidad}
@@ -253,9 +257,9 @@ class Checkout extends Component {
     //     this.state.idU
     // );
 
-    const url = `http://andresteccorp.club/TesisAndres/sessionUserCheckout.php`;
+    const url = `http://andresteccorp.club/ecom_val/sessionUserCheckout.php`;
     const uniqueArr = [
-      ...new Set(this.state.cartItems.map(data => data.item.idComercio))
+      ...new Set(this.state.cartItems.map((data) => data.item.idComercio)),
     ];
     /** Validacion de logueo para hacer compras */
     if (
@@ -283,7 +287,7 @@ class Checkout extends Component {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
 
         // Convert your array as JSON Array
@@ -295,18 +299,18 @@ class Checkout extends Component {
           date2: this.state.date2,
           carrito: this.state.cartItems,
           idComercio: uniqueArr.toString(),
-          radioButtonChoose: this.state.radioButtonChoose
-        })
+          radioButtonChoose: this.state.radioButtonChoose,
+        }),
       })
-        .then(response => response.json())
-        .then(responseJson => {
+        .then((response) => response.json())
+        .then((responseJson) => {
           console.log("RespuestaServerCarrito *---*", responseJson);
           this.props.navigation.navigate("Home");
           alert("Pedido En Proceso \n" + "Espera Notificación de Compra");
           this.clearCar();
         })
 
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     }
@@ -327,10 +331,10 @@ class Checkout extends Component {
     // const dataUserName = this.state.dataUser.dataU.name;
     // const dataUserCorreo = this.state.dataUser.dataU.email;
     // Get that Item from an Json Object
-    let result = this.state.cartItems.map(a => a.item.idComercio);
+    let result = this.state.cartItems.map((a) => a.item.idComercio);
     // Take duplicated values from an array
     const uniqueArr = [
-      ...new Set(this.state.cartItems.map(data => data.item.idComercio))
+      ...new Set(this.state.cartItems.map((data) => data.item.idComercio)),
     ];
 
     console.log("Desde checkOutCart info CartItems --", this.state.cartItems);
@@ -361,7 +365,7 @@ class Checkout extends Component {
                 alignItems: "center",
                 backgroundColor: "#6fafc4",
                 paddingTop: 20,
-                paddingBottom: 20
+                paddingBottom: 20,
               }}
             >
               <Icon
@@ -374,7 +378,7 @@ class Checkout extends Component {
                   top: 15,
                   borderRightWidth: 1,
                   borderColor: "rgba(253, 253, 253, 0.2)",
-                  paddingRight: 20
+                  paddingRight: 20,
                 }}
               />
               <Text style={{ color: "#fdfdfd", paddingLeft: 20 }}>
@@ -408,7 +412,7 @@ class Checkout extends Component {
                 style={{
                   textAlign: "right",
                   fontSize: 18,
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 {" $ " + this.state.totalParcial}
@@ -428,7 +432,7 @@ class Checkout extends Component {
                   textAlign: "right",
                   fontSize: 18,
                   fontWeight: "bold",
-                  color: "#00BFFF"
+                  color: "#00BFFF",
                 }}
               >
                 {" $ " + this.valorTotalDescuento()}
@@ -447,7 +451,7 @@ class Checkout extends Component {
                 style={{
                   textAlign: "right",
                   fontSize: 18,
-                  fontWeight: "bold"
+                  fontWeight: "bold",
                 }}
               >
                 {" $ " + (this.state.totalParcial - this.valorTotalDescuento())}
@@ -464,7 +468,7 @@ class Checkout extends Component {
                 borderWidth: 1,
                 borderColor: "rgba(149, 165, 166, 0.3)",
                 paddingLeft: 10,
-                marginLeft: 0
+                marginLeft: 0,
               }}
             >
               <Text>TarjetaCredito</Text>
@@ -503,7 +507,7 @@ class Checkout extends Component {
                       bitcoin: false,
                       googleWallet: false,
                       radioButton: "TarjetaCredito",
-                      radioButtonChoose: "TarjetaCredito"
+                      radioButtonChoose: "TarjetaCredito",
                     })
                   }
                 />
@@ -515,7 +519,7 @@ class Checkout extends Component {
                 borderColor: "rgba(149, 165, 166, 0.3)",
                 paddingLeft: 10,
                 marginLeft: 0,
-                borderTopWidth: 0
+                borderTopWidth: 0,
               }}
             >
               <Text>Paypal</Text>
@@ -536,7 +540,7 @@ class Checkout extends Component {
                       bitcoin: false,
                       googleWallet: false,
                       radioButton: "Paypal",
-                      radioButtonChoose: "Paypal"
+                      radioButtonChoose: "Paypal",
                     })
                   }
                 />
@@ -549,7 +553,7 @@ class Checkout extends Component {
               borderColor: "rgba(149, 165, 166, 0.3)",
               paddingLeft: 10,
               marginLeft: 0,
-              borderTopWidth: 0
+              borderTopWidth: 0,
             }}
           >
             <Text>Efectivo</Text>
@@ -570,7 +574,7 @@ class Checkout extends Component {
                     bitcoin: false,
                     googleWallet: false,
                     radioButton: "Efectivo",
-                    radioButtonChoose: "Efectivo"
+                    radioButtonChoose: "Efectivo",
                   })
                 }
               />
@@ -582,7 +586,7 @@ class Checkout extends Component {
               borderColor: "rgba(149, 165, 166, 0.3)",
               paddingLeft: 10,
               marginLeft: 0,
-              borderTopWidth: 0
+              borderTopWidth: 0,
             }}
           >
             <Text>Bitcoin</Text>
@@ -603,7 +607,7 @@ class Checkout extends Component {
                     bitcoin: true,
                     googleWallet: false,
                     radioButton: "Bitcoin",
-                    radioButtonChoose: "Bitcoin"
+                    radioButtonChoose: "Bitcoin",
                   })
                 }
               />
@@ -615,7 +619,7 @@ class Checkout extends Component {
               borderColor: "rgba(149, 165, 166, 0.3)",
               paddingLeft: 10,
               marginLeft: 0,
-              borderTopWidth: 0
+              borderTopWidth: 0,
             }}
           >
             <Text>Google Wallet</Text>
@@ -636,7 +640,7 @@ class Checkout extends Component {
                     bitcoin: false,
                     googleWallet: true,
                     radioButton: "googleWallet",
-                    radioButtonChoose: "googleWallet"
+                    radioButtonChoose: "googleWallet",
                   })
                 }
               />
@@ -650,7 +654,7 @@ class Checkout extends Component {
               placeholderTextColor="grey"
               numberOfLines={3}
               multiline={true}
-              onChangeText={text => this.setState({ domicilo: text })}
+              onChangeText={(text) => this.setState({ domicilo: text })}
             />
           </View>
           <View style={{ marginTop: 10, marginBottom: 10, paddingBottom: 7 }}>
@@ -685,22 +689,22 @@ class Checkout extends Component {
 const styles = {
   invoice: {
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
   line: {
     width: "100%",
     height: 1,
-    backgroundColor: "#bdc3c7"
+    backgroundColor: "#bdc3c7",
   },
   textAreaContainer: {
     borderColor: "#bdc3c7",
     borderWidth: 1,
-    padding: 5
+    padding: 5,
   },
   textArea: {
     height: 100,
-    justifyContent: "flex-start"
-  }
+    justifyContent: "flex-start",
+  },
 };
 //make this component available to the app
 export default Checkout;
